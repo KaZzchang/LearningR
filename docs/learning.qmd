@@ -1,0 +1,35 @@
+---
+title: "Reproducible documents"
+author: "Simon Chang"
+format: html
+editor: visual
+---
+
+## Basics of R
+
+```{r simple math}
+1 + 1
+```
+
+## Setup code chunk
+
+```{r setup}
+library(tidyverse)
+```
+
+## About Me
+
+-   Simon Chang
+-   Doctor
+-   Endocrinology
+-   Molecular medicine
+
+Living in *Vejle* with wife and **3 children**.
+
+```{r maths}
+#| echo: true
+3 + 3
+```
+
+## testing fir GIt
+Quite testfull this task!
