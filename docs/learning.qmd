@@ -4,35 +4,14 @@ author: "Simon Chang"
 format: html
 editor: visual
 ---
-
-## Basics of R
-
-```{r simple math}
-1 + 1
-```
-
-## Setup code chunk
-
 ```{r setup}
 library(tidyverse)
+post_meal_data <- read_csv2(here::here("data/post-meal-insulin.csv"))
 ```
 
-## About Me
+## Showing the data
 
--   Simon Chang
--   Doctor
--   Endocrinology
--   Molecular medicine
-
-Living in *Vejle* with wife and **3 children**.
-
-```{r maths}
-#| echo: true
-3 + 3
+```{r}
+post_meal_data
+glimpse(post_meal_data)
 ```
-
-## Testing for GIT
-Quite testfull this task!
-
-##Another test for GIT
-More testfull tasks!!
