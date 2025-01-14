@@ -31,8 +31,8 @@ Living in *Vejle* with wife and **3 children**.
 3 + 3
 ```
 
-## testing fir GIt
+## Testing for GIT
 Quite testfull this task!
 
-##Another test for GIt
+##Another test for GIT
 More testfull tasks!!
