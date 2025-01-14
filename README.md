@@ -1,5 +1,7 @@
 # LearningR: Intro R Course
 
+Bla bal bla
+
 
 
 # Brief description of folder and file contents
