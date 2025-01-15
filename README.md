@@ -1,6 +1,6 @@
 # LearningR: Intro R Course
 
-Bla bal bla
+Some½ text for GitHub
 
 
 
