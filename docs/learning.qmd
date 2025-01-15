@@ -28,12 +28,11 @@ help(colnames)
 ```
 
 ```{r ggplot}
-
 library(ggplot2)
 ggplot(post_meal_data, aes(x = BMI)) +
   geom_histogram()
-
 ```
+## Basic histogram
 
 ```{r}
 #| fig-cap: "Dist. of BMI"
@@ -44,7 +43,7 @@ ggplot(post_meal_data, aes(x = BMI)) +
 This is my figure (@fig-bmi-histo)
 
 ## Excersice: discrete plots
-```{r}
+```{r discrete plots}
 #| fig-cap: "Grouping"
 #| label: fig-group-bar
 ggplot(post_meal_data, aes(x = Group)) +
@@ -52,3 +51,42 @@ ggplot(post_meal_data, aes(x = Group)) +
 ```
 
 See @fig-group-bar above for a cool plot!
+
+## Plotting two discrete
+
+```{r two discrete}
+post_meal_data |>
+  ggplot(aes(x = Group, fill = as.character(glykemi))) +
+  geom_bar(position = position_dodge())
+```
+
+## Side by side plots
+
+```{r histogram}
+post_meal_data |>
+  ggplot(aes(x = BMI)) +
+  geom_histogram()
+```
+```{r}
+post_meal_data |>
+  ggplot(aes(x = Group, fill = as.character(glykemi))) +
+  geom_bar(position = position_dodge())
+```
+```{r side-by-side-plots}
+#| label: fig-bmi-glycemia
+#| fig-cap: "BMI and glycemia, side by side."
+#| fig-subcap:
+#|   - "Distribution of BMI."
+#|   - "Number of those with glycemia."
+#|   - "Grouping in relation to glycemia"
+#| layout-ncol: 3
+ggplot(post_meal_data, aes(x = BMI)) +
+  geom_histogram()
+
+ggplot(post_meal_data, aes(x = glykemi)) +
+  geom_bar()
+
+post_meal_data |>
+  ggplot(aes(x = Group, fill = as.character(glykemi))) +
+  geom_bar(position = position_dodge())
+```
