@@ -104,3 +104,8 @@ ggplot(post_meal_data, aes(x = BMI, y = auc_pg)) +
 ## Pushing changes to remote
 
 Oh oh - how exciting!
+
+## Pulling file from Github
+
+Even more exiting
+
