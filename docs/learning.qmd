@@ -90,3 +90,14 @@ post_meal_data |>
   ggplot(aes(x = Group, fill = as.character(glykemi))) +
   geom_bar(position = position_dodge())
 ```
+## Plotting two continuous variables
+
+```{r two continouus}
+#| fig-cap: "Scatterplot of BKI against PG"
+#| label: fig-bmi-aucpg
+
+ggplot(post_meal_data, aes(x = BMI, y = auc_pg)) +
+  geom_point(aes(fill = Group)) +
+  geom_smooth()
+
+```
