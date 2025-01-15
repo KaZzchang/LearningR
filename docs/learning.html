@@ -105,7 +105,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>post_meal_data <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data/post-meal-insulin.csv"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>post_meal_data <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data/post-meal-insulin.csv"</span>))</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>small_post_meal_data <span class="ot">&lt;-</span> <span class="fu">select</span>(post_meal_data, id, Age, BMI, Group, auc_pg, auc_ins, glykemi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="showing-the-data" class="level2">
 <h2 class="anchored" data-anchor-id="showing-the-data">Showing the data</h2>
@@ -225,16 +226,9 @@ $ glykemi                  &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>?colnames</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>starting httpd help server ... done</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(colnames)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(post_meal_data, <span class="fu">aes</span>(<span class="at">x =</span> BMI)) <span class="sc">+</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(post_meal_data, <span class="fu">aes</span>(<span class="at">x =</span> BMI)) <span class="sc">+</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 </div>
@@ -250,8 +244,8 @@ $ glykemi                  &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 <section id="basic-histogram" class="level2">
 <h2 class="anchored" data-anchor-id="basic-histogram">Basic histogram</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(post_meal_data, <span class="fu">aes</span>(<span class="at">x =</span> BMI)) <span class="sc">+</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(post_meal_data, <span class="fu">aes</span>(<span class="at">x =</span> BMI)) <span class="sc">+</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 </div>
@@ -273,8 +267,8 @@ Figure&nbsp;1: Dist. of BMI
 <section id="excersice-discrete-plots" class="level2">
 <h2 class="anchored" data-anchor-id="excersice-discrete-plots">Excersice: discrete plots</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(post_meal_data, <span class="fu">aes</span>(<span class="at">x =</span> Group)) <span class="sc">+</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(post_meal_data, <span class="fu">aes</span>(<span class="at">x =</span> Group)) <span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-group-bar" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -293,9 +287,9 @@ Figure&nbsp;2: Grouping
 <section id="plotting-two-discrete" class="level2">
 <h2 class="anchored" data-anchor-id="plotting-two-discrete">Plotting two discrete</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>post_meal_data <span class="sc">|&gt;</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Group, <span class="at">fill =</span> <span class="fu">as.character</span>(glykemi))) <span class="sc">+</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="fu">position_dodge</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>post_meal_data <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Group, <span class="at">fill =</span> <span class="fu">as.character</span>(glykemi))) <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="fu">position_dodge</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -308,9 +302,9 @@ Figure&nbsp;2: Grouping
 <section id="side-by-side-plots" class="level2">
 <h2 class="anchored" data-anchor-id="side-by-side-plots">Side by side plots</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>post_meal_data <span class="sc">|&gt;</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> BMI)) <span class="sc">+</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>post_meal_data <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> BMI)) <span class="sc">+</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 </div>
@@ -323,28 +317,28 @@ Figure&nbsp;2: Grouping
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>post_meal_data <span class="sc">|&gt;</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Group, <span class="at">fill =</span> <span class="fu">as.character</span>(glykemi))) <span class="sc">+</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="fu">position_dodge</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>post_meal_data <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Group, <span class="at">fill =</span> <span class="fu">as.character</span>(glykemi))) <span class="sc">+</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="fu">position_dodge</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="learning_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="learning_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(post_meal_data, <span class="fu">aes</span>(<span class="at">x =</span> BMI)) <span class="sc">+</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(post_meal_data, <span class="fu">aes</span>(<span class="at">x =</span> BMI)) <span class="sc">+</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(post_meal_data, <span class="fu">aes</span>(<span class="at">x =</span> glykemi)) <span class="sc">+</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>post_meal_data <span class="sc">|&gt;</span></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Group, <span class="at">fill =</span> <span class="fu">as.character</span>(glykemi))) <span class="sc">+</span></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="fu">position_dodge</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(post_meal_data, <span class="fu">aes</span>(<span class="at">x =</span> glykemi)) <span class="sc">+</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>post_meal_data <span class="sc">|&gt;</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Group, <span class="at">fill =</span> <span class="fu">as.character</span>(glykemi))) <span class="sc">+</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="fu">position_dodge</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div id="fig-bmi-glycemia" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-bmi-glycemia-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -396,9 +390,9 @@ Figure&nbsp;3: BMI and glycemia, side by side.
 <section id="plotting-two-continuous-variables" class="level2">
 <h2 class="anchored" data-anchor-id="plotting-two-continuous-variables">Plotting two continuous variables</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(post_meal_data, <span class="fu">aes</span>(<span class="at">x =</span> BMI, <span class="at">y =</span> auc_pg)) <span class="sc">+</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">fill =</span> Group)) <span class="sc">+</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(post_meal_data, <span class="fu">aes</span>(<span class="at">x =</span> BMI, <span class="at">y =</span> auc_pg)) <span class="sc">+</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">fill =</span> Group)) <span class="sc">+</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
 </div>
@@ -415,19 +409,139 @@ Figure&nbsp;4: Scatterplot of BKI against PG
 </div>
 </div>
 </div>
-<div id="fig-collecte" class="quarto-layout-panel">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-collecte-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<p>{<a href="#fig-bmi-histo" class="quarto-xref">Figure&nbsp;1</a>} {<a href="#fig-group-bar" class="quarto-xref">Figure&nbsp;2</a>} Collected figure</p>
+</section>
+<section id="pushing-changes-to-remote" class="level2">
+<h2 class="anchored" data-anchor-id="pushing-changes-to-remote">Pushing changes to remote</h2>
+<p>Oh oh - how exciting!</p>
+</section>
+<section id="pulling-file-from-github" class="level2">
+<h2 class="anchored" data-anchor-id="pulling-file-from-github">Pulling file from Github</h2>
+<p>Even more exiting</p>
+</section>
+<section id="selecting-data" class="level2">
+<h2 class="anchored" data-anchor-id="selecting-data">Selecting Data</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(post_meal_data, Age)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 31 × 1
+     Age
+   &lt;dbl&gt;
+ 1    50
+ 2    51
+ 3    43
+ 4    55
+ 5    53
+ 6    51
+ 7    48
+ 8    35
+ 9    54
+10    52
+# ℹ 21 more rows</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(post_meal_data, Age, BMI, Weight)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 31 × 3
+     Age   BMI Weight
+   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+ 1    50  27.5   92  
+ 2    51  33.7  106. 
+ 3    43  26.3   89.1
+ 4    55  25.9   84  
+ 5    53  29.4   99.4
+ 6    51  23.7   76.8
+ 7    48  23.9   75.8
+ 8    35  22     67.5
+ 9    54  26.4   87.9
+10    52  24.5   72.2
+# ℹ 21 more rows</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(post_meal_data, <span class="sc">-</span>Group)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 31 × 84
+   OFS.ID   Age   BMI Length Weight Bone.mineral.DXA Fat.mass...DXA Fat.mass.DXA
+   &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;            &lt;dbl&gt;          &lt;dbl&gt;        &lt;dbl&gt;
+ 1 OFS 3…    50  27.5   1.83   92               3.54           30.2         27.9
+ 2 OFS 3…    51  33.7   1.77  106.              4.05           36.4         38.7
+ 3 OFS 3…    43  26.3   1.84   89.1             3.77           24.4         21.9
+ 4 OFS 3…    55  25.9   1.8    84               3.14           27.5         23.2
+ 5 OFS 3…    53  29.4   1.84   99.4             4.09           31.2         31.2
+ 6 OFS 3…    51  23.7   1.8    76.8             3.21           20           15.3
+ 7 OFS 3…    48  23.9   1.78   75.8             3.33           15.4         11.8
+ 8 OFS 3…    35  22     1.75   67.5             3.26           13.8          9.4
+ 9 OFS 3…    54  26.4   1.83   87.9             4.49           20           17.9
+10 OFS 3…    52  24.5   1.72   72.2             2.87           28.5         20.7
+# ℹ 21 more rows
+# ℹ 76 more variables: Fat.free.mass.DXA &lt;dbl&gt;, Fat.free.soft.tissue.DXA &lt;dbl&gt;,
+#   FP.Glucose.screen &lt;dbl&gt;, P.Glucose..5.OGTT &lt;dbl&gt;, P.Glucose.0.OGTT &lt;dbl&gt;,
+#   P.GLucose.30.OGTT &lt;dbl&gt;, P.Glucose.60.OGTT &lt;dbl&gt;, P.Glucose.90.OGTT &lt;dbl&gt;,
+#   P.Glucose.120.OGTT &lt;dbl&gt;, FS.Insulin.screen &lt;dbl&gt;, Insulin..5.OGTT.X &lt;dbl&gt;,
+#   Insulin.0.OGTT.X &lt;dbl&gt;, Insulin.0.OGTT &lt;dbl&gt;, Insulin.30.OGTT &lt;dbl&gt;,
+#   Insulin.60.OGTT &lt;dbl&gt;, Insulin.90.OGTT &lt;dbl&gt;, Insulin.120.OGTT &lt;dbl&gt;, …</code></pre>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-collecte-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5
-</figcaption>
-</figure>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(post_meal_data, <span class="fu">starts_with</span>(<span class="st">"Insulin"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 31 × 22
+   Insulin..5.OGTT.X Insulin.0.OGTT.X Insulin.0.OGTT Insulin.30.OGTT
+               &lt;dbl&gt;            &lt;dbl&gt;          &lt;dbl&gt;           &lt;dbl&gt;
+ 1              53.5             51.7           310.            368.
+ 2              90.3             93.8           563.            486.
+ 3              20.8             20.8           125.            174.
+ 4              52.1             46.5           279.            639.
+ 5              44.4             42.7           256.            431.
+ 6              32.6             31.6           190.            174.
+ 7              38.2             37.5           225.            188.
+ 8              30.6             31.3           188.            243.
+ 9              28.5             27.4           165.            410.
+10              35.4             34.4           206.            236.
+# ℹ 21 more rows
+# ℹ 18 more variables: Insulin.60.OGTT &lt;dbl&gt;, Insulin.90.OGTT &lt;dbl&gt;,
+#   Insulin.120.OGTT &lt;dbl&gt;, Insulin.15 &lt;dbl&gt;, Insulin.5 &lt;dbl&gt;, Insulin1 &lt;dbl&gt;,
+#   Insulin2 &lt;dbl&gt;, Insulin3 &lt;dbl&gt;, Insulin5 &lt;dbl&gt;, Insulin8 &lt;dbl&gt;,
+#   Insulin10 &lt;dbl&gt;, Insulin15 &lt;dbl&gt;, Insulin20 &lt;dbl&gt;, Insulin30 &lt;dbl&gt;,
+#   Insulin45 &lt;dbl&gt;, Insulin60 &lt;dbl&gt;, Insulin90 &lt;dbl&gt;, Insulin120 &lt;dbl&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(post_meal_data, <span class="fu">ends_with</span>(<span class="st">"5"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 31 × 15
+   PG.15  PG.5   PG5  PG15  PG45 CP.15  CP.5   CP5  CP15  CP45 Insulin.15
+   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;
+ 1   5.4   5.4   5.3   5.8   7.6  0.93  0.08  1.01 1.12   2.6        76.4
+ 2   5.2   5.4   5.4   6     7.8  0.99  1.05  1.15 1.39   2          83.3
+ 3   4.9   5     5     5     5.8  0.39  0.4   0.44 0.41   0.75       19.4
+ 4   4.8   4.8   4.9   5.3   6.2  0.84  0.81  0.96 1      1.5        76.4
+ 5   5.9   5.8   5.8   6.2   9.3  0.69  0.69  0.84 0.89   1.83       56.9
+ 6   5     4.9   5     5.5   6.4  0.51  0.51  0.57 0.82   1.07       33.3
+ 7   5     5.1   5.1   5.7   9.8  0.64  0.64  0.7  0.077  1.78       42.4
+ 8   4.6   4.6   4.8   5.1   7.3  0.33  0.33  0.38 0.44   1.56       25.0
+ 9   5.3   5.1   5.2   6     7.2  0.58  0.59  0.68 1.02   1.47       43.1
+10   4.9   4.9   4.9   5.3   6.7  0.63  0.64  0.76 0.85   1.76       43.1
+# ℹ 21 more rows
+# ℹ 4 more variables: Insulin.5 &lt;dbl&gt;, Insulin5 &lt;dbl&gt;, Insulin15 &lt;dbl&gt;,
+#   Insulin45 &lt;dbl&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(post_meal_data, <span class="fu">contains</span>(<span class="st">"0"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 31 × 29
+   P.Glucose.0.OGTT P.GLucose.30.OGTT P.Glucose.60.OGTT P.Glucose.90.OGTT
+              &lt;dbl&gt;             &lt;dbl&gt;             &lt;dbl&gt;             &lt;dbl&gt;
+ 1             5.1                9.4               6.9               4.7
+ 2             5.4                8.4               8.4               8.7
+ 3             4.9                6.8               4.3               3.8
+ 4             5.15               8.8               8.4               7.5
+ 5             5.55               9.9              10.6              11  
+ 6             5.6                8.9               9.1               7.1
+ 7             5                  7.6               6.3               5.3
+ 8             5.15               6.4               7.6               6.3
+ 9             4.9                7.4               6.8               5.5
+10             5.3                8.7              10.1               6.8
+# ℹ 21 more rows
+# ℹ 25 more variables: P.Glucose.120.OGTT &lt;dbl&gt;, Insulin.0.OGTT.X &lt;dbl&gt;,
+#   Insulin.0.OGTT &lt;dbl&gt;, Insulin.30.OGTT &lt;dbl&gt;, Insulin.60.OGTT &lt;dbl&gt;,
+#   Insulin.90.OGTT &lt;dbl&gt;, Insulin.120.OGTT &lt;dbl&gt;, PG10 &lt;dbl&gt;, PG20 &lt;dbl&gt;,
+#   PG30 &lt;dbl&gt;, PG60 &lt;dbl&gt;, PG90 &lt;dbl&gt;, PG120 &lt;dbl&gt;, CP10 &lt;dbl&gt;, CP20 &lt;dbl&gt;,
+#   CP30 &lt;dbl&gt;, CP60 &lt;dbl&gt;, CP90 &lt;dbl&gt;, CP120 &lt;dbl&gt;, Insulin10 &lt;dbl&gt;,
+#   Insulin20 &lt;dbl&gt;, Insulin30 &lt;dbl&gt;, Insulin60 &lt;dbl&gt;, Insulin90 &lt;dbl&gt;, …</code></pre>
+</div>
 </div>
 </section>
 

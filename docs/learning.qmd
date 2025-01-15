@@ -12,6 +12,7 @@ editor: visual
 
 library(tidyverse)
 post_meal_data <- read_csv2(here::here("data/post-meal-insulin.csv"))
+small_post_meal_data <- select(post_meal_data, id, Age, BMI, Group, auc_pg, auc_ins, glykemi)
 ```
 
 
@@ -20,11 +21,6 @@ post_meal_data <- read_csv2(here::here("data/post-meal-insulin.csv"))
 ```{r}
 post_meal_data
 glimpse(post_meal_data)
-```
-
-```{r}
-?colnames
-help(colnames)
 ```
 
 ```{r ggplot}
@@ -99,7 +95,6 @@ post_meal_data |>
 ggplot(post_meal_data, aes(x = BMI, y = auc_pg)) +
   geom_point(aes(fill = Group)) +
   geom_smooth()
-
 ```
 ## Pushing changes to remote
 
@@ -109,3 +104,13 @@ Oh oh - how exciting!
 
 Even more exiting
 
+## Selecting Data
+
+```{r}
+select(post_meal_data, Age)
+select(post_meal_data, Age, BMI, Weight)
+select(post_meal_data, -Group)
+select(post_meal_data, starts_with("Insulin"))
+select(post_meal_data, ends_with("5"))
+select(post_meal_data, contains("0"))
+```
