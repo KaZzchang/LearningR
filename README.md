@@ -1,6 +1,6 @@
 # LearningR: Intro R Course
 
-Some½ text for GitHub
+Some text for GitHub - and some text from Github to me
 
 
 
