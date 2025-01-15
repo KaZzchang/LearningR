@@ -4,10 +4,12 @@ author: "Simon Chang"
 format: html
 editor: visual
 ---
-```{r setup}
 
+```{r setup}
 #| message: false
 #| warning: false
+
+
 library(tidyverse)
 post_meal_data <- read_csv2(here::here("data/post-meal-insulin.csv"))
 ```
