@@ -108,10 +108,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>post_meal_data <span class="ot">&lt;-</span> <span class="fu">read_csv2</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data/post-meal-insulin.csv"</span>))</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>small_post_meal_data <span class="ot">&lt;-</span> <span class="fu">select</span>(post_meal_data, id, Age, BMI, Group, auc_pg, auc_ins, glykemi)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>tidier_post_meal_data <span class="ot">&lt;-</span> small_post_meal_data <span class="sc">|&gt;</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">auc_glucose =</span> auc_pg,</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">auc_insulin =</span> auc_ins) <span class="sc">|&gt;</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(glykemi<span class="sc">==</span><span class="dv">0</span>) <span class="sc">|&gt;</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>glykemi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">auc_glucose =</span> auc_pg,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">auc_insulin =</span> auc_ins</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(glykemi <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>glykemi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="showing-the-data" class="level2">
 <h2 class="anchored" data-anchor-id="showing-the-data">Showing the data</h2>
@@ -644,7 +646,7 @@ Figure&nbsp;4: Scatterplot of BKI against PG
 <h2 class="anchored" data-anchor-id="filtering-on-rows">Filtering on rows</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>small_post_meal_data <span class="sc">|&gt;</span></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(glykemi<span class="sc">==</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(glykemi <span class="sc">==</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 7
      id   Age   BMI Group auc_pg auc_ins glykemi
@@ -655,7 +657,7 @@ Figure&nbsp;4: Scatterplot of BKI against PG
 4    22    51  30.5 CTR     959.  53492.       1</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>small_post_meal_data <span class="sc">|&gt;</span></span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(BMI<span class="sc">&gt;=</span><span class="dv">25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(BMI <span class="sc">&gt;=</span> <span class="dv">25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 19 × 7
       id   Age   BMI Group auc_pg auc_ins glykemi
@@ -681,7 +683,7 @@ Figure&nbsp;4: Scatterplot of BKI against PG
 19    31    33  27.4 CTR     786.  43337.       0</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>small_post_meal_data <span class="sc">|&gt;</span></span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Group<span class="sc">==</span><span class="st">"CTR"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Group <span class="sc">==</span> <span class="st">"CTR"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 15 × 7
       id   Age   BMI Group auc_pg auc_ins glykemi
@@ -731,7 +733,7 @@ Figure&nbsp;4: Scatterplot of BKI against PG
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>small_post_meal_data <span class="sc">|&gt;</span></span>
-<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Group <span class="sc">==</span> <span class="st">"CTR"</span>, BMI<span class="sc">&gt;=</span><span class="dv">25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Group <span class="sc">==</span> <span class="st">"CTR"</span>, BMI <span class="sc">&gt;=</span> <span class="dv">25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 11 × 7
       id   Age   BMI Group auc_pg auc_ins glykemi
@@ -749,7 +751,7 @@ Figure&nbsp;4: Scatterplot of BKI against PG
 11    31    33  27.4 CTR     786.  43337.       0</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>small_post_meal_data <span class="sc">|&gt;</span></span>
-<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Group <span class="sc">==</span> <span class="st">"CTR"</span> <span class="sc">|</span> BMI<span class="sc">&gt;=</span><span class="dv">25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Group <span class="sc">==</span> <span class="st">"CTR"</span> <span class="sc">|</span> BMI <span class="sc">&gt;=</span> <span class="dv">25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 23 × 7
       id   Age   BMI Group auc_pg auc_ins glykemi
@@ -770,6 +772,95 @@ Figure&nbsp;4: Scatterplot of BKI against PG
 </section>
 <section id="modify-or-add-column" class="level2">
 <h2 class="anchored" data-anchor-id="modify-or-add-column">Modify or add column</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>tidier_post_meal_data <span class="sc">%&gt;%</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">insulin_glucose_ratio =</span> auc_insulin <span class="sc">/</span> auc_glucose,</span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">Group =</span> <span class="fu">if_else</span>(Group <span class="sc">==</span> <span class="st">"CTR"</span>, <span class="st">"Conrol"</span>, <span class="st">"First-degree Relative"</span>)</span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 27 × 7
+      id   Age   BMI Group         auc_glucose auc_insulin insulin_glucose_ratio
+   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt;       &lt;dbl&gt;                 &lt;dbl&gt;
+ 1     1    50  27.5 First-degree…        806.      28728.                  35.7
+ 2     2    51  33.7 First-degree…        944.      42243.                  44.7
+ 3     3    43  26.3 First-degree…        694.       7108.                  10.2
+ 4     4    55  25.9 First-degree…        731.      37593.                  51.4
+ 5     5    53  29.4 First-degree…       1004.      33863.                  33.7
+ 6     6    51  23.7 First-degree…        713.      15008.                  21.1
+ 7     7    48  23.9 First-degree…        965.      23196.                  24.0
+ 8     8    35  22   First-degree…        741.      15272.                  20.6
+ 9     9    54  26.4 First-degree…        848.      24426.                  28.8
+10    10    52  24.5 First-degree…        759.      22475.                  29.6
+# ℹ 17 more rows</code></pre>
+</div>
+</div>
+</section>
+<section id="practice-with-filter-and-mutate" class="level2">
+<h2 class="anchored" data-anchor-id="practice-with-filter-and-mutate">Practice with filter and mutate</h2>
+<p>Use filter() to find how many participants have a BMI of more than or equal to 20 and less than or equal to 40, and are in the “FDR” Group. How many are there?</p>
+<p>Create a percent_body_fat column with mutate() by dividing the Fat.mass.DXA by the Weight, then multiplying by 100. Hint: In R, use * to multiply and / to divide. Then pipe to filter() to find out how many participants have a percent_body_fat greater than 30.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Task 1.</span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>post_meal_data <span class="sc">|&gt;</span></span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(BMI <span class="sc">&gt;=</span> <span class="dv">20</span> <span class="sc">&amp;</span> BMI <span class="sc">&lt;=</span> <span class="dv">40</span> <span class="sc">&amp;</span> Group <span class="sc">==</span> <span class="st">"FDR"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 16 × 85
+   OFS.ID  Group   Age   BMI Length Weight Bone.mineral.DXA Fat.mass...DXA
+   &lt;chr&gt;   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;            &lt;dbl&gt;          &lt;dbl&gt;
+ 1 OFS 301 FDR      50  27.5   1.83   92               3.54           30.2
+ 2 OFS 302 FDR      51  33.7   1.77  106.              4.05           36.4
+ 3 OFS 304 FDR      43  26.3   1.84   89.1             3.77           24.4
+ 4 OFS 303 FDR      55  25.9   1.8    84               3.14           27.5
+ 5 OFS 305 FDR      53  29.4   1.84   99.4             4.09           31.2
+ 6 OFS 306 FDR      51  23.7   1.8    76.8             3.21           20  
+ 7 OFS 307 FDR      48  23.9   1.78   75.8             3.33           15.4
+ 8 OFS 308 FDR      35  22     1.75   67.5             3.26           13.8
+ 9 OFS 309 FDR      54  26.4   1.83   87.9             4.49           20  
+10 OFS 310 FDR      52  24.5   1.72   72.2             2.87           28.5
+11 OFS 311 FDR      47  27.9   1.73   83.6             3.28           35.1
+12 OFS 312 FDR      37  22.6   1.86   78.3             4.02           15.8
+13 OFS 313 FDR      55  22.2   1.7    64.3             2.73           21.2
+14 OFS 314 FDR      35  24.6   1.74   74.4             3.21           23.2
+15 OFS 315 FDR      48  24.7   1.78   78.2             3.18           23.5
+16 OFS 316 FDR      52  27.5   1.79   88.2             3.87           29.4
+# ℹ 77 more variables: Fat.mass.DXA &lt;dbl&gt;, Fat.free.mass.DXA &lt;dbl&gt;,
+#   Fat.free.soft.tissue.DXA &lt;dbl&gt;, FP.Glucose.screen &lt;dbl&gt;,
+#   P.Glucose..5.OGTT &lt;dbl&gt;, P.Glucose.0.OGTT &lt;dbl&gt;, P.GLucose.30.OGTT &lt;dbl&gt;,
+#   P.Glucose.60.OGTT &lt;dbl&gt;, P.Glucose.90.OGTT &lt;dbl&gt;, P.Glucose.120.OGTT &lt;dbl&gt;,
+#   FS.Insulin.screen &lt;dbl&gt;, Insulin..5.OGTT.X &lt;dbl&gt;, Insulin.0.OGTT.X &lt;dbl&gt;,
+#   Insulin.0.OGTT &lt;dbl&gt;, Insulin.30.OGTT &lt;dbl&gt;, Insulin.60.OGTT &lt;dbl&gt;,
+#   Insulin.90.OGTT &lt;dbl&gt;, Insulin.120.OGTT &lt;dbl&gt;, PG.15 &lt;dbl&gt;, PG.5 &lt;dbl&gt;, …</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Task 2.</span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>post_meal_data <span class="sc">|&gt;</span></span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">percent_body_fat =</span> (Fat.mass.DXA <span class="sc">/</span> Weight) <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(percent_body_fat <span class="sc">&gt;</span> <span class="dv">30</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 86
+   OFS.ID  Group   Age   BMI Length Weight Bone.mineral.DXA Fat.mass...DXA
+   &lt;chr&gt;   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;            &lt;dbl&gt;          &lt;dbl&gt;
+ 1 OFS 301 FDR      50  27.5   1.83   92               3.54           30.2
+ 2 OFS 302 FDR      51  33.7   1.77  106.              4.05           36.4
+ 3 OFS 305 FDR      53  29.4   1.84   99.4             4.09           31.2
+ 4 OFS 311 FDR      47  27.9   1.73   83.6             3.28           35.1
+ 5 OFS 333 CTR      30  33.4   1.78  106.              3.2            34.7
+ 6 OFS 334 CTR      46  30.7   1.76   95.1             3.63           33.2
+ 7 OFS 335 CTR      34  28.7   1.87  100.              4.65           31.6
+ 8 OFS 336 CTR      51  30.5   1.83  102.              3.3            39.8
+ 9 OFS 337 CTR      53  28.9   1.8    93.6             3.92           31.1
+10 OFS 343 CTR      40  31.8   1.86  110.              3.94           30.7
+# ℹ 78 more variables: Fat.mass.DXA &lt;dbl&gt;, Fat.free.mass.DXA &lt;dbl&gt;,
+#   Fat.free.soft.tissue.DXA &lt;dbl&gt;, FP.Glucose.screen &lt;dbl&gt;,
+#   P.Glucose..5.OGTT &lt;dbl&gt;, P.Glucose.0.OGTT &lt;dbl&gt;, P.GLucose.30.OGTT &lt;dbl&gt;,
+#   P.Glucose.60.OGTT &lt;dbl&gt;, P.Glucose.90.OGTT &lt;dbl&gt;, P.Glucose.120.OGTT &lt;dbl&gt;,
+#   FS.Insulin.screen &lt;dbl&gt;, Insulin..5.OGTT.X &lt;dbl&gt;, Insulin.0.OGTT.X &lt;dbl&gt;,
+#   Insulin.0.OGTT &lt;dbl&gt;, Insulin.30.OGTT &lt;dbl&gt;, Insulin.60.OGTT &lt;dbl&gt;,
+#   Insulin.90.OGTT &lt;dbl&gt;, Insulin.120.OGTT &lt;dbl&gt;, PG.15 &lt;dbl&gt;, PG.5 &lt;dbl&gt;, …</code></pre>
+</div>
+</div>
 </section>
 
 </main>
